@@ -21,7 +21,7 @@
 
 ---
 
-## What is Brew?
+## What is CiderStack Harvest (formely Brew)?
 
 Brew is the orchestration layer for [CiderStack](https://ciderstack.com) macOS infrastructure. It turns a fleet of Mac machines into a programmable CI/CD platform with:
 
@@ -169,7 +169,7 @@ data/
 
 ```
                           +-----------+
-                          |   Brew    |
+                          |   Harvest |
                           |  :8470    |
                           +-----+-----+
                                 |
