@@ -1,6 +1,6 @@
 <p align="center">
   <picture>
-    <img alt="Harvest" src="https://ciderstack.sfo3.cdn.digitaloceanspaces.com/Images/ciderstack-logo-512.png" width="200">
+    <img alt="Harvest" src="https://f004.backblazeb2.com/file/ciderstack-mdm/ciderstack-logo.svg" width="200">
   </picture>
 </p>
 
