@@ -1,6 +1,6 @@
 <p align="center">
   <picture>
-    <img alt="Brew" src="https://ciderstack.sfo3.cdn.digitaloceanspaces.com/Images/ciderstack-logo-512.png" width="200">
+    <img alt="Harvest" src="https://ciderstack.sfo3.cdn.digitaloceanspaces.com/Images/ciderstack-logo-512.png" width="200">
   </picture>
 </p>
 
@@ -21,9 +21,9 @@
 
 ---
 
-## What is CiderStack Harvest (formely Brew)?
+## What is CiderStack Harvest (formely Harvest)?
 
-Brew is the orchestration layer for [CiderStack](https://ciderstack.com) macOS infrastructure. It turns a fleet of Mac machines into a programmable CI/CD platform with:
+CiderStack Harvest is the orchestration layer for [CiderStack](https://ciderstack.com) macOS infrastructure. It turns a fleet of Mac machines into a programmable CI/CD platform with:
 
 - **Ephemeral macOS VMs** — Clone a template, run your build, tear it down. Every job gets a clean environment.
 - **GitHub Actions integration** — Self-hosted macOS runners that auto-register, run one job, and disappear.
@@ -36,21 +36,21 @@ Ships as a single compiled binary with a built-in web UI. No containers, no JVM,
 ### Run
 
 ```bash
-cd brew-v*
-./brew
+cd Harvest-v*
+./Harvest
 ```
 
-That's it. Brew creates its SQLite database and P-256 identity keypair on first launch. Open [http://localhost:8470](http://localhost:8470) to set up your admin account.
+That's it. Harvest creates its SQLite database and P-256 identity keypair on first launch. Open [http://localhost:8470](http://localhost:8470) to set up your admin account.
 
 ### Pair a node
 
 Once the UI is running, pair your first Mac:
 
 1. On the Mac running [CiderStack Fleet](https://ciderstack.com), note the pairing code from the Fleet UI
-2. In Brew, go to **Nodes** and click **Pair Node**
+2. In Harvest, go to **Nodes** and click **Pair Node**
 3. Enter the Mac's IP address and pairing code
 
-Brew will exchange cryptographic keys with the node and begin monitoring it.
+Harvest will exchange cryptographic keys with the node and begin monitoring it.
 
 ## Features
 
@@ -92,7 +92,7 @@ curl -X POST http://localhost:8470/api/runner-pools \
   }'
 ```
 
-Brew maintains the pool at `targetSize`, automatically provisioning new runners as jobs consume them. Each runner gets a fresh VM clone — no cross-job contamination.
+Harvest maintains the pool at `targetSize`, automatically provisioning new runners as jobs consume them. Each runner gets a fresh VM clone — no cross-job contamination.
 
 Use them in your workflows:
 
@@ -142,7 +142,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
 SLACK_CHANNEL=#ci-notifications
 
 # Networking
-BREW_PUBLIC_URL=https://ci.example.com  # URL that VMs use to reach Brew
+Harvest_PUBLIC_URL=https://ci.example.com  # URL that VMs use to reach Harvest
 
 # Tuning
 HEALTH_CHECK_INTERVAL=30               # Node polling (seconds)
@@ -150,11 +150,11 @@ RUNNER_JOB_TIMEOUT=14400                # Max runner job duration (seconds, defa
 LOG_LEVEL=info                          # debug | info | warn | error
 ```
 
-All configuration is optional. Brew works out of the box for local development with no env vars set.
+All configuration is optional. Harvest works out of the box for local development with no env vars set.
 
 ### Data directory
 
-Brew stores all state in the `data/` directory relative to the binary:
+Harvest stores all state in the `data/` directory relative to the binary:
 
 ```
 data/
@@ -184,7 +184,7 @@ data/
             [VMs]            [VMs]            [VMs]
 ```
 
-Brew communicates with each Mac over the **Fleet RPC protocol** (HTTP POST to `:9473/rpc/<Method>`). Each Mac runs [CiderStack Fleet](https://ciderstack.com) which manages the Apple Virtualization framework, VM lifecycle, and SSH tunneling.
+Harvest communicates with each Mac over the **Fleet RPC protocol** (HTTP POST to `:9473/rpc/<Method>`). Each Mac runs [CiderStack Fleet](https://ciderstack.com) which manages the Apple Virtualization framework, VM lifecycle, and SSH tunneling.
 
 **Constraints:**
 - Max 2 concurrent VMs per Mac (Apple hardware limitation)
@@ -291,7 +291,7 @@ All endpoints are served at `http://localhost:8470`. Authenticated endpoints req
 | Linux | x86_64 | Supported |
 | Linux | ARM64 | Supported |
 
-The Brew binary itself runs on any of the above. **VM operations** require macOS nodes running CiderStack Fleet with Apple Virtualization framework support.
+The Harvest binary itself runs on any of the above. **VM operations** require macOS nodes running CiderStack Fleet with Apple Virtualization framework support.
 
 ## License
 
